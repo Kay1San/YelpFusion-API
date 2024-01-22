@@ -144,8 +144,11 @@
                             <li class="foodCategory">{{biz.business_info.price}}</li>
                             <li class="foodCategory">{{biz.business_info.location.city}}</li>
                         </div>
-
-                        <li>review goes here</li>
+                        
+                        <div class="reviewTexts">
+                            <li><img src="../static/msg-icon.png"></li>
+                            <li id="review-text">{{biz.reviews}}</li>
+                        </div>
                         <!-- For service offering (ex. takeout, delivery, etc...) it uses /businesses/{business_id_or_alias}/service_offerings so in the meantime, just random service offering -->
                         {% for offering in biz.business_info.categories %}
                             <li>service offering {{forloop.counter}}</li>

@@ -40,13 +40,13 @@ def search_result(request):
     biz_count = len(businesss_data["businesses"])
 
     for i in range(biz_count):
-       #review_data = reviews_query(businesss_data["businesses"][i]["id"]) COMMENTED SINCE ITS USES A LOT OF API DATA (500 LIMIT)
+       review_data = reviews_query(businesss_data["businesses"][i]["id"]) #COMMENTED SINCE ITS USES A LOT OF API DATA (500 LIMIT)
 
        items.append({
                 "business_info": businesss_data["businesses"][i],
                 "term":food,
-                "location":location
-                #"reviews": review_data 
+                "location":location,
+                "reviews": review_data["reviews"][0]["text"] 
             })
     
 
