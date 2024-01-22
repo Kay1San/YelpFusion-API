@@ -86,14 +86,22 @@ WSGI_APPLICATION = 'yelpProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASE for AWS intergration which is not completed yet
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'CATALOG',
+#        'USER': 'admin',
+#        'PASSWORD': PASSWORD,
+#        'HOST': 'yelp-database.cn8g2ss0o3nv.us-east-2.rds.amazonaws.com',
+#        'PORT': 3306
+#   }
+#}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'CATALOG',
-        'USER': 'admin',
-        'PASSWORD': PASSWORD,
-        'HOST': 'yelp-database.cn8g2ss0o3nv.us-east-2.rds.amazonaws.com',
-        'PORT': 3306
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "mydatabase",
     }
 }
 
