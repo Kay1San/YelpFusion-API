@@ -1,0 +1,79 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your head content here -->
+    <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_PLACES_API_KEY }}&libraries=places"></script>
+    <link rel="stylesheet" href="{% static 'home.css'%}" type="text/css">
+    
+</head>
+<body>
+    <div class="preloadImage"></div>
+    <div class="headerPart">
+        <div class="navBar">
+
+            <img class="logo" src="../static/yelp-logo-whtite.png" alt="logo" height="42" width="109">
+
+            <form action="/results/" method="get" class="formClass">
+
+                <div id="autocomplete-2" class="autocomplete">
+                    <input class="autocomplete-input" placeholder="things to do, nail salons, plumbers" type="text" name="term" id="term" required>
+                    <ul class="autocomplete-result-list"></ul>
+                </div>
+            
+                <div id="autocomplete-3" class="autocomplete">
+                    <input class="autocomplete-input" placeholder="address, neighborhood, city, state or zip" type="text" name="location" id="location" required>
+                    <ul class="autocomplete-result-list" id="location-autocomplete"></ul>
+                </div>
+            
+                <button type="submit" class="searchButton" onClick="location.href ='/results/'"></button>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="h2Class">
+        <h2>Categories</h2>
+    </div>
+    
+    
+
+    <script>
+        new Autocomplete('#autocomplete-2', {
+
+            search : input =>{
+                console.log(input)
+                const url = `/autocomplete/?term=${input}`
+                return new Promise(resolve =>{
+                    fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                        resolve(data.terms)
+                    })
+                })
+            }
+        })
+    </script>
+
+<script>
+    function initAutocomplete() {
+        var autocompleteLocation = new google.maps.places.Autocomplete(
+            document.getElementById('location'), {types: ['geocode']}
+        );
+
+        autocompleteLocation.addListener('place_changed', function() {
+            var place = autocompleteLocation.getPlace();
+            if (!place.geometry) {
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
+            }
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initAutocomplete);
+</script>
+   
+</body>
+
+</html>

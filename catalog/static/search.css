@@ -1,0 +1,138 @@
+body{
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+#price-1, #price-2, #price-3, #price-4{
+    background-color: #fff;
+}
+
+
+.allResults{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+}
+
+.logo:hover {
+    cursor:pointer
+}
+
+h2 {
+    font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(45,46,47,1);
+}
+
+.foodName{
+    display:flex;
+    flex-direction: row;
+    font-weight:bold;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+#name{
+    margin-left: 5px;
+}
+
+#name:hover{
+    text-decoration: underline;
+}
+
+.foodList{
+    
+
+}
+
+.foodEl{
+    display:flex;
+    flex-direction: row;
+    list-style-type: none;
+    vertical-align: top;
+    width: 50%;
+    margin-left:0%;
+    
+}
+
+.foodEl:after {
+    position: absolute;
+    content: "";
+    width: 10%;
+    height: 100%;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform 0.3s, opacity 1s;
+}
+.foodEl:active:after {
+    transform: scale(0, 0);
+    opacity: 0.3;
+    transition: 0s;
+}
+
+.foodDes{
+
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+#foodImg{
+    width: 150px;
+    height: 150px;
+    border-radius: 7px;
+}
+
+.foodEl:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    cursor: pointer;
+}
+
+
+.reviewElements{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.reviewEl{
+    margin-right: 7px;
+}
+
+#userRating{
+    font-weight: bold;
+}
+
+
+#reviewCount{
+    color:rgb(54, 113, 180);
+}
+
+#reviewCount:hover{
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+
+.foodCategories{
+    display:flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.foodCategory{
+    margin-right: 7px;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(110,112,114,1);
+}
+
+#foodTag{
+    background-color: rgb(202, 198, 198);
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 3px 2px;
+    font-size: 13px;
+    color:rgb(94, 91, 91);
+}

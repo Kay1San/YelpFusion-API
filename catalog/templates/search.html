@@ -1,0 +1,191 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yelp Search</title>
+    <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQCzKnCtxfYgcHU38fbxeqFUHoY0omUjI&libraries=places"></script>
+    <link rel="stylesheet" href="{% static 'search.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'home.css'%}" type="text/css">
+
+</head>
+<body>
+
+
+    <div class="navBar">
+
+        <img class="logo" src="../static/yelp-logo.png" alt="logo" height="42" width="109" onClick="location.href = '../'">
+
+        <form action="/results/" method="get" class="formClass">
+
+            <div id="autocomplete-2" class="autocomplete">
+                <input class="autocomplete-input" placeholder="things to do, nail salons, plumbers" type="text" name="term" id="term" required>
+                <ul class="autocomplete-result-list"></ul>
+            </div>
+        
+            <div id="autocomplete-3" class="autocomplete">
+                <input class="autocomplete-input" placeholder="address, neighborhood, city, state or zip" type="text" name="location" id="location" required>
+                <ul class="autocomplete-result-list" id="location-autocomplete"></ul>
+            </div>
+        
+            <button type="submit" class="searchButton" onClick="location.href ='/results/'"></button>
+
+        </form>
+    </div>
+
+    <script>
+        new Autocomplete('#autocomplete-2', {
+
+            search : input =>{
+                console.log(input)
+                const url = `/autocomplete/?term=${input}`
+                return new Promise(resolve =>{
+                    fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                        resolve(data.terms)
+                    })
+                })
+            }
+        })
+    </script>
+
+    <script>
+        function initAutocomplete() {
+            var autocompleteLocation = new google.maps.places.Autocomplete(
+                document.getElementById('location'), {types: ['geocode']}
+            );
+
+            autocompleteLocation.addListener('place_changed', function() {
+                var place = autocompleteLocation.getPlace();
+                if (!place.geometry) {
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initAutocomplete);
+    </script>
+
+    <div class="allFilters">
+        <h2>Filters</h2>
+        <div class="filterPrice">
+            <button id="price-1" onclick="filterItemsPrice('$')" data-price="$">$</button>
+            <button id="price-2" onclick="filterItemsPrice('$$')" data-price="$$">$$</button>
+            <button id="price-3" onclick="filterItemsPrice('$$$')" data-price="$$$">$$$</button>
+            <button id="price-4" onclick="filterItemsPrice('$$$$')" data-price="$$$$">$$$$</button>
+        </div>
+    </div>
+    
+    <div  class="allResults">
+        
+        <h2>All "{{items.0.term}}" results in {{items.0.location}}</h2>
+
+        <div class="foodList" >
+            {% for biz in items %}
+
+                <script>
+                    function reviewStarsImg(rating) 
+                    {
+                        if(rating >= 4.7 && rating <= 5) {
+                            return "{% static 'regular/regular_5.png' %}";
+                        }
+                        else if(rating >= 4.3 && rating <= 4.6){
+                            return "{% static 'regular/regular_4_half.png' %}";
+                        }
+                        else if(rating >= 3.7 && rating <= 4.2){
+                            return "{% static 'regular/regular_4.png' %}";
+                        }
+                        else if(rating >= 3.3 && rating <= 3.6){
+                            return "{% static 'regular/regular_3_half.png' %}";
+                        }
+                        else if(rating >= 2.7 && rating <= 3.2){
+                            return "{% static 'regular/regular_3.png' %}";
+                        }
+                        else if(rating >= 2.3 && rating <= 2.6){
+                            return "{% static 'regular/regular_2_half.png' %}";
+                        }
+                        else if(rating >= 1.7 && rating <= 2.2){
+                            return "{% static 'regular/regular_2.png' %}";
+                        }
+                        else if(rating >= 1.3 && rating <= 1.6){
+                            return "{% static 'regular/regular_1_half.png' %}";
+                        }
+                        else if(rating >= 0.7 && rating <= 1.2){
+                            return "{% static 'regular/regular_1.png' %}";
+                        }
+                        else {
+                            return "{% static 'regular/regular_0.png' %}";
+                        }
+                    }
+                </script> 
+
+                <ul class="foodEl" data-price="{{ biz.business_info.price }}" onClick="location.href = '{% url 'business_details' business_id=biz.business_info.id %}'">
+                    <li><img id = "foodImg" src="{{ biz.business_info.image_url }}" alt="{{ biz.business_info.name }} Image"></li><br>
+                    <div class="foodDes">
+
+                        <div class="foodName">
+                            <li id="count">{{forloop.counter}}.</li>
+                            <li id="name">{{biz.business_info.name}}</li>
+                        </div>
+
+                        <div class="reviewElements">
+                            <li><img id="reviewStars" class="reviewEl" src onerror="this.onerror=null; this.src=reviewStarsImg('{{ biz.business_info.rating }}');" alt="review stars img"></li>
+                            <li id="userRating" class="reviewEl">{{biz.business_info.rating}}</li>
+                            <li class="reviewEl" id="reviewCount">({{biz.business_info.review_count}} reviews)</li>
+                        </div>
+                        
+                        <div class="foodCategories">
+                            {% for tags in biz.business_info.categories %}
+                                <li class="foodCategory" id="foodTag">{{tags.title}}</li>
+                            {% endfor %}
+                            <li class="foodCategory">{{biz.business_info.price}}</li>
+                            <li class="foodCategory">{{biz.business_info.location.city}}</li>
+                        </div>
+
+                        <li>review goes here</li>
+                        <!-- For service offering (ex. takeout, delivery, etc...) it uses /businesses/{business_id_or_alias}/service_offerings so in the meantime, just random service offering -->
+                        {% for offering in biz.business_info.categories %}
+                            <li>service offering {{forloop.counter}}</li>
+                        {% endfor %}
+                    </div>
+
+                </ul>
+                <script>
+                    function setColor(id){
+                        var property = document.getElementById(id);
+                        if (property.style.backgroundColor === "white" || property.style.backgroundColor === "") {
+                            property.style.backgroundColor = "#7FFF00";
+                        } else {
+                            property.style.backgroundColor = "white";
+                        }
+                    }
+                    
+                    function filterItemsPrice(priceCategory) {
+                        var items = document.querySelectorAll('.foodEl');
+                        for (var i = 0; i < items.length; i++) {
+                            if (items[i].getAttribute('data-price') === priceCategory) {
+                                items[i].style.display = '';
+                            } else {
+                                items[i].style.display = 'none';
+                            }
+                    }
+
+                    function filterPrice(id, priceCategory)
+                    {
+                        setColor(id);
+                        filterItemsPrice(priceCategory);
+                    }
+}
+                </script>
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+   </body>
+   
+</html>

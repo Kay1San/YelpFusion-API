@@ -1,0 +1,246 @@
+body{
+    margin: 0;
+    padding:0;
+    width: 100%;
+    height: 100%;
+}
+
+.preloadImage {
+    display: none;
+    background-image: url('testBackground.jpg'), url('foodBackground-2.jpg'), url('test3.jpg'), url('test.jpg');
+  }
+
+.headerPart{
+    height: 700px;
+    box-shadow: 0px 65px 30px -21px rgba(0,0,0,0.45) inset;
+    background-image: url("testBackground.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: backgroundImage 10s linear infinite 
+}
+
+@keyframes backgroundImage {
+
+   0%{
+    background-image: url(testBackground.jpg);
+   }
+   20%{
+    background-image: url(testBackground.jpg);
+   }
+
+   25%{
+    background-image: url(foodBackground-2.jpg)
+   }
+
+   45%{
+    background-image: url(foodBackground-2.jpg);
+   }
+
+   50%{
+    background-image: url(test3.jpg);
+   }
+
+   70%{
+    background-image: url(test3.jpg);
+   }
+
+   75%{
+    background-image: url(test4.jpg);
+   }
+
+   95%{
+    background-image: url(test4.jpg);
+   }
+
+
+
+}
+
+.navBar{
+    padding-top: 15px;
+    display:flex;
+    flex-direction: row;
+    margin-left: 30px;
+}
+
+
+.formClass{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15%;
+}
+
+.autocomplete-input {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    width: 100%;
+    padding: 12px 12px 12px 48px;
+    box-sizing: border-box;
+    position: relative;
+    font-size: 16px;
+    line-height: 1.5;
+    flex: 1;
+    background-color: #eee;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+");
+    background-repeat: no-repeat;
+    background-position: 12px
+}
+
+.autocomplete-input:focus,.autocomplete-input[aria-expanded=true] {
+    border-color: rgba(0,0,0,.12);
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 2px 2px rgba(0,0,0,.16)
+}
+
+[data-position=below] .autocomplete-input[aria-expanded=true] {
+    border-bottom-color: transparent;
+    border-radius: 8px 8px 0 0
+}
+
+[data-position=above] .autocomplete-input[aria-expanded=true] {
+    border-top-color: transparent;
+    border-radius: 0 0 8px 8px;
+    z-index: 2
+}
+
+.autocomplete[data-loading=true]:after {
+    content: "";
+    border: 3px solid rgba(0,0,0,.12);
+    border-right-color: rgba(0,0,0,.48);
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: rotate 1s linear infinite
+}
+
+.autocomplete-result-list {
+    margin: 0;
+    border: 1px solid rgba(0,0,0,.12);
+    padding: 0;
+    box-sizing: border-box;
+    max-height: 296px;
+    overflow-y: auto;
+    background: #fff;
+    list-style: none;
+    box-shadow: 0 2px 2px rgba(0,0,0,.16)
+}
+
+[data-position=below] .autocomplete-result-list {
+    margin-top: -1px;
+    border-top-color: transparent;
+    border-radius: 0 0 8px 8px;
+    padding-bottom: 8px
+}
+
+[data-position=above] .autocomplete-result-list {
+    margin-bottom: -1px;
+    border-bottom-color: transparent;
+    border-radius: 8px 8px 0 0;
+    padding-top: 8px
+}
+
+.autocomplete-result {
+    cursor: default;
+    padding: 12px 12px 12px 48px;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2NjIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+");
+    background-repeat: no-repeat;
+    background-position: 12px
+}
+
+.autocomplete-result:hover,.autocomplete-result[aria-selected=true] {
+    background-color: rgba(0,0,0,.06)
+}
+
+@keyframes rotate {
+    0% {
+        transform: translateY(-50%) rotate(0deg)
+    }
+
+    to {
+        transform: translateY(-50%) rotate(359deg)
+    }
+}
+
+#term, #location {
+    width: 450px;
+    height: 50px;
+    
+}
+
+
+#location-autocomplete .autocomplete-result-list {
+    box-shadow: none;
+}
+
+input:not(:focus) + .autocomplete-result-list {
+    box-shadow: none !important;
+}
+
+#term {
+    display: inline-block;
+    float: left;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#location {
+    display:inline-block;
+    float: left;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-left: 0px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.searchButton{
+    border-radius:8px;
+    height:50px;
+    width: 55px;
+    background-color: rgba(224,7,7,1);
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-left: 0px;
+    border: none;
+    outline: none   ;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+');
+    background-repeat: no-repeat;
+    background-position: 12px;
+    cursor: pointer;
+    position:relative;
+    overflow: hidden;
+}
+
+.searchButton:hover {
+    background: rgb(247, 78, 78) radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+');
+    background-repeat: no-repeat;
+    background-position: 12px;
+    cursor: pointer;
+  }
+
+  .searchButton:after {
+    content: '';
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.15);
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    position:absolute;
+    top: 50%;
+    bottom: 50%;
+  }
+
+  
+
+  
+
+

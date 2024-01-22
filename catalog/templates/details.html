@@ -1,0 +1,16 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biz Details</title>
+</head>
+<body>
+    
+    <h1>{{name}}</h1>
+    {% for pic in photos %}
+        <img src="{{pic}}" alt="test">
+        {% endfor %}
+
+</body>
+</html>
