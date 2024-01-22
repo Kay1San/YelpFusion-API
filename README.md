@@ -47,10 +47,10 @@ python manage.py runserver
 
 Here's how the home page looks like so far, it features the autocomplete packages from @trevoreyre
 
-![home page](./static/home-page.png)
+![home page](./catalog/static/home-page.png)
 
 
-![results page](./static/search-results.png)
+![results page](./catalog/static/search-results.png)
 
 ## Documentations
 
