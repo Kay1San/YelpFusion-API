@@ -1,23 +1,24 @@
 # Yelp Clone Web Application
 
-This is an work in progress project in which I'm recreating Yelp's website with Django and Python, while also planning to add new features such as time-based review score plots
-
+This is a work-in-progress project in which I'm recreating Yelp's website using Django and Python, with plans to add new features such as time-based review score plots.
 
 ## Requirements
 
-This project requires an API key for both Yelp Fusion API and Google Places API in which you can register below
+This project requires API keys for both the Yelp Fusion API and the Google Places API. You can register for these keys at the following links:
 
 * [Yelp Fusion API](https://docs.developer.yelp.com/docs/fusion-authentication)
 * [Google Places API](https://developers.google.com/maps/documentation/places/web-service/get-api-key)
 
+These keys are essential for accessing the data and functionalities of the respective services.
+
 ## Installation
 
-The first step to set up this project on your local machine is to clone this repository
+First, clone this repository:
 ```
-https://github.com/Kay1San/YelpFusion-API.git
+git clone https://github.com/Kay1San/YelpFusion-API.git
 ``` 
 
-Once the repository is cloned, install the following dependencies 
+Once cloned, install the following dependencies:
 
 ``` 
 pip install django
@@ -25,31 +26,31 @@ pip install python-dotenv
 pip install requests
 ``` 
 
-Since Django uses a SECRET_KEY, type this command on your terminal
+Generate a Django SECRET_KEY with this command:
 ```
 python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ``` 
- 
-Create a .env file in the root directory of the app by following the instructions inside example.env
 
-Apply the migrations once everything is completed
+Create a .env file in the root directory of the app, following the instructions in example.env.
+
+Then, apply the migrations:
 
 ```
-python manage.py migrations
+python manage.py migrate
 ```
 
 ## Instructions
 
-Run the app locally with the command
+Run the app locally with:
 ```
 python manage.py runserver
 ```
 
-Here's how the home page looks like so far, it features the autocomplete packages from @trevoreyre
+Here's a preview of the home page, featuring the autocomplete packages from @trevoreyre:
 
 ![home page](./catalog/static/home-page.png)
 
-
+The search results page is still in development, with more filter options to be added soon:
 ![results page](./catalog/static/search-results.png)
 
 ## Documentations
