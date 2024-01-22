@@ -31,7 +31,7 @@ Generate a Django SECRET_KEY with this command:
 python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ``` 
 
-Create a .env file in the root directory of the app, following the instructions in example.env.
+Create a .env file in the root directory of the app, following the instructions in key-instructions.txt.
 
 Then, apply the migrations:
 
